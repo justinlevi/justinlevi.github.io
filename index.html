@@ -1,8 +1,11 @@
 ---
 layout: default
-title: Home
-tagline: Adam's Github Site
----  
-  <ul>
-    <li><a href="/blog">Blog</a></li>
-  </ul>
+title: Justin Winter
+subtitle: Improvement through iteration
+bg-image: "home-bg.jpg"
+
+---
+
+{% for post in site.posts %}
+  <li><span>{{ post.date | date_to_string }}</span> » <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>
+{% endfor %}
