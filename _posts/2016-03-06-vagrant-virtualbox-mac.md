@@ -26,4 +26,6 @@ Cmnd_Alias VAGRANT_EXPORTS_REMOVE = /usr/bin/sed -E -e /*/ d -ibak /etc/exports
 
 so, let's bang open our terminal and add those lines.
 
-![alt text](/images/posts/030616/sudo-visudo.gif)
+![alt text](/images/posts/030616/sudo-visudo.gif){: .img-responsive}
+
+At this point we can then do a $ `vagrant up` and we shouldn't have to enter our password.
