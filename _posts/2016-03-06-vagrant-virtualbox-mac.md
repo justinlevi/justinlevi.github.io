@@ -11,10 +11,10 @@ For the last few months I've been really digging into my local development envir
 
 ### Where to start?? Let's get rid of the vagrant password requirement related to NFS
 
-Well, first thing, if we want to automatically start up the VM when the system boots, we need to get rid of the password prompt that vagrant gives you when doing a $ `vagrant up`. Doing a bit of googling led me to this info:
+Well, first thing, if we want to automatically start up the VM, when the system boots, we need to get rid of the password prompt that vagrant gives after doing a $ `vagrant up`. Doing a bit of googling led me to this info:
 
 ---
-sudo visudo Type your password, and you're editing the file. You'll want to paste these lines below (depending on whether you are running Vagrant on OS X or Linux.
+Run the command `sudo visudo` from a termninal, type your password, and now you're editing the [sudoer file](https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man5/sudoers.5.html). You'll want to paste these lines below (depending on whether you are running Vagrant on OS X or Linux.
 
 As of version 1.7.3, the sudoers file in OS X should have these entries:
 
@@ -80,9 +80,9 @@ $sudo launchctl load -w ~/Library/LaunchAgents/com.wintercreative.vagrantup.plis
 
 A few gotchas I ran into:
 
-* I initially tried to drop this plist in the /Library/LaunchDaemons folder. This turned out to be a bad idea for a few reasons. Without getting into too much detail, this blog post is really incredible as far as breaking down the difference between the two. http://www.grivet-tools.com/blog/2014/launchdaemons-vs-launchagents Bottom line is that it's better to use ~/Library/LaunchAgents for this task.
-* I use brew to manage a lot of my external apps and libraries. Using brew, vagrant gets installed in /usr/local/bing/vagrant and I had that path wrong to start. The [error comes up as 78](http://stackoverflow.com/questions/34215527) if you do a $`sudo launchctl list`.
-* I thought I could get away without defining my PATH variables in the plist file despite seeing this in a [] stackoverflow post].(http://stackoverflow.com/questions/30680861)
+* I initially tried to drop this plist in the `/Library/LaunchDaemons` folder. This turned out to be a bad idea for a few reasons. Without getting into too much detail, this blog post, [The Difference between launchdaemons  vs launchagents](http://www.grivet-tools.com/blog/2014/launchdaemons-vs-launchagents),  is really incredible as far as breaking down the difference between the two.  Bottom line is that it's better to use `~/Library/LaunchAgents` for this task.
+* I use brew to manage a lot of my external apps and libraries. Using brew, vagrant gets installed in `/usr/local/bin/vagrant` and I had that path wrong to start. The [error comes up as 78](http://stackoverflow.com/questions/34215527) if you do a $`sudo launchctl list`.
+* I thought I could get away without defining my PATH variables in the plist file despite seeing this in a [stackoverflow post].(http://stackoverflow.com/questions/30680861)
 * Finally, per another [stackoverflow post](http://stackoverflow.com/questions/34215527) I found a super helpful little app called **LaunchControl** which can be installed view brew as well $ `brew cask install launchcontrol`. http://www.soma-zone.com/LaunchControl/ - This totally helped me push past the last roadblock.
 Ok, let's test it out one final time. From within your VM folder, run $ `vagrant halt` to make sure the VM isn't running, and then restart.
 
