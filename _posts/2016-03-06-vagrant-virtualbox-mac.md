@@ -106,3 +106,7 @@ end tell
 ```
 
 I want this to run after vagrant is finished and not right at login because the VM hasn't finished provisioning yet and therefore can't be mounted. Task for another time...
+
+On windows I found you can also map an SFTP connection to a network drive using this software - https://www.eldos.com/sftp-net-drive/download-release.php
+
+There may be other/better options out there but this one was pointed to via the super user thread here:  http://superuser.com/questions/291786/map-remote-drive-in-windows-over-ssh
