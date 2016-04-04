@@ -4,7 +4,7 @@ title: "Hamburger Menus are Evil. Right?"
 subtitle: "Let's have the discussion."
 bg-image: "burger.jpg"
 
-date: 2016-04-16
+date: 2016-04-04
 ---
 
 Recently I got a link to a post about the hamburger menu and usability testing: 
