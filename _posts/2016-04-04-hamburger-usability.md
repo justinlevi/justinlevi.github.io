@@ -2,7 +2,7 @@
 layout: post
 title: "Hamburger Menus are Evil. Right?"
 subtitle: "Let's have the discussion."
-bg-image: "burger.jpg"
+bg-image: "burger-bg.jpg"
 
 date: 2016-04-04
 ---
