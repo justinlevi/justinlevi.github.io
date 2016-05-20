@@ -2,7 +2,7 @@
 layout: post
 title: "The case of the failed PHPStorm Composer install"
 subtitle: "Custom Private Repository on Github and SSH Keys"
-bg-image: "burger-bg.jpg"
+bg-image: "hamburglar-bg.jpg"
 
 date: 2016-04-04
 ---
