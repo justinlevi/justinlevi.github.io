@@ -145,8 +145,8 @@ installed_extras:
   # - xhprof
 ```
 - Enable adminer, drupalconsole, nodejs, and ruby by un-commenting those lines.
-- Note: if you forget to do this before you do the initial $ vagrant up you can always run $ vagrant reload --provision  this will download and rebuild everything. If that fails, you can try $ vagrant halt && vagrant destroy && vagrant up
-- Every now and then there will be a new release of the box. You will want to update using $ vagrant box update
+- Note: if you forget to do this before you do the initial $ `vagrant up` you can always run $ `vagrant reload --provision`  this will download and rebuild everything. If that fails, you can try $ `vagrant halt && vagrant destroy && vagrant up`
+- Every now and then there will be a new release of the box. You will want to update using $ `vagrant box update`
 
 Note: Drupal-VM ships with php7 which is great and you should switch if you can. However, Acquia cloud does not support php7 yet so if you need to work with php5.6, you need to change the following in your box/config.yml
 
