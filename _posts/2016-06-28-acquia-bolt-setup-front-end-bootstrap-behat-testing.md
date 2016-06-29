@@ -311,9 +311,9 @@ $ `cp -r docroot/themes/contrib/bootstrap/starterkits/less docroot/themes/custom
 
 Rename all of the THEMENAME.* files in your new custom subtheme
 
-$ `mv THEMENAME.libraries.yml boltstrap.l ibraries.yml`
-$ `mv THEMENAME.starterkit.yml boltstrap. yml`
-$ `mv THEMENAME.theme boltstrap.theme`
+- $ `mv THEMENAME.libraries.yml boltstrap.l ibraries.yml`
+- $ `mv THEMENAME.starterkit.yml boltstrap. yml`
+- $ `mv THEMENAME.theme boltstrap.theme`
 
 Edit your THEME.yml file and change the name and anything else you want.
 
