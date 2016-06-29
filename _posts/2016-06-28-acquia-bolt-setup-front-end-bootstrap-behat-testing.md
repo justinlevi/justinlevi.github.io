@@ -736,10 +736,9 @@ Notes/LInks:
 - Behat  http://docs.behat.org/en/v3.0
 - PHPUnit https://phpunit.de
 - Phing https://www.phing.info
-
 - Travis-CI Tips https://docs.travis-ci.com/user/deployment/heroku
 
-Pro Tip
+**Pro Tip**
 
 Install this plugin to speed up composer based installs on drupal-vm vagrant
 -  `vagrant plugin install vagrant-cachier`
