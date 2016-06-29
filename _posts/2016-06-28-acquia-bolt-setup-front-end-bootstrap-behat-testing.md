@@ -727,8 +727,7 @@ $ `./blt.sh blt:update`
 Sadly this does not work on Windows.
 - Issue posted on the Acquia Bolt github repo. Seems to be an issue with Vagrant and/or NFS
 
-Notes/LInks:
-
+Notes/Links:
 - Vagrant https://www.vagrantup.com
 - Virtual Box https://www.virtualbox.org/wiki/Downloads
 - Acquia Bolt https://github.com/acquia/blt
