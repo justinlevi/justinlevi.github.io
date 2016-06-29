@@ -11,6 +11,13 @@ An opinionated holistic approach to building Drupal projects.
 
 Drupal is a lot more than just downloading and configuring modules. The ecosystem to build, test, and deploy is fragmented and confusing. In April this year, Acquia released an open source project called Bolt that was born out of Acquia's Professional Services team. This project is a collection of "best practices" from the folks who know the ins and outs of Drupal, and the ecosystem that Drupal operates in, better than anyone. If you are not aware of this project, you should be.
 
+---
+
+Screen Grab Videos
+https://www.youtube.com/playlist?list=PLfaK4-crenFBXSyjVHf3apHC4uU_ULpSR
+
+---
+
 This talk will cover the following:
 
 - Overview of what bolt is
