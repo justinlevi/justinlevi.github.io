@@ -40,11 +40,11 @@ Topics not covered, maybe next time:
 
 Disclaimer: I'm definitely not an expert when it comes to Bolt. I'm a fan and I've invested a good chunk of time learning as much as I can. This talk is really just walking through what I've learned so far.
 
-[x] Initial Setup video
-[ ] Drupal installation
-[x] Front-end setup
-[ ] Deployment and Travis Video
-[ ] Deploying to live site
+- [x] Initial Setup video
+- [ ] Drupal installation
+- [x] Front-end setup
+- [ ] Deployment and Travis Video
+- [ ] Deploying to live site
 
 ##OVERVIEW##
 
