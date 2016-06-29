@@ -34,61 +34,61 @@ Topics not covered, maybe next time:
 Disclaimer: I'm definitely not an expert when it comes to Bolt. I'm a fan and I've invested a good chunk of time learning as much as I can. This talk is really just walking through what I've learned so far.
 
 [x] Initial Setup video
-
+[ ] Drupal installation
 [x] Front-end setup
-
 [ ] Deployment and Travis Video
-
 [ ] Deploying to live site
 
-OVERVIEW
+##OVERVIEW##
 
-Problem Statement:
+***Problem Statement:***
 
 As Drupal web designers and developers, we're faced with a ton of decisions as far as our work environment, testing, tools, best practices, and general strategies to get work done. This can create confusion and affect productivity.
 
-How this project helps:
+***How this project helps:***
 
 Leveraging Bolt takes the guess work out of trying to get many desperate technologies to all work in concert. Bolt can also help create a unified development platform for larger teams, which should improve productivity. Bolt has the potential to positively impact everything from onboarding new developers to continuous delivery of a product.
 
 Teams can focus on the unique business impact of their project versus spending time on how the project architecture should look.
 
-HOW TO GET SETUP
+##HOW TO GET SETUP##
 
-Required Reading:
+***Required Reading:***
 
 - https://github.com/acquia/blt/blob/8.x/template/readme/onboarding.md
 - https://github.com/acquia/blt/tree/8.x/template/readme
 - https://github.com/acquia/blt/blob/8.x/template/tests/README.md
 
-Note, doing this on windows is possible but it is rough
-I ended up going through this process from within another linux vm and then copying the files/folders back to my windows file system. I also needed to copy and manually modify the scripts/drupal-vm/config.yml and put it into my box folder. I had to copy the scripts/drupal-vm/Vagrantfile into the project root folder as well.  Trying to do this any other way caused lots of issues I couldn't figure out.
+*Note, doing this on windows is possible but it is rough
+I ended up going through this process from within another linux vm and then copying the files/folders back to my windows file system. I also needed to copy and manually modify the scripts/drupal-vm/config.yml and put it into my box folder. I had to copy the scripts/drupal-vm/Vagrantfile into the project root folder as well.  Trying to do this any other way caused lots of issues I couldn't figure out.*
 
 From the onboarding readme:
-
+```
 We highly recommend that you do not use Windows directly for development. Many development tools (e.g., drush, gulp, etc.) are not built or tested for Windows compatibility. Furthermore, most CI solutions (e.g., Travis CI, Drupal CI, etc.) do not permit testing on Windows OS. Similarly, BLT cannot be fully tested on Windows and is unsupported on this platform.
-
+```
+**
 If you're on windows, don't let this scare you though. There are ton of things you can learn here and you can get the project working.
+**
 
-Requirements
+**Requirements**
 - Vagrant
 - VirtualBox
 
-Initial Setup
+###Initial Setup###
 
 Clone the github.com/acquia/blt repository locally
-$ git clone github.com/acquia/blt
+$ `git clone github.com/acquia/blt`
 
 From your terminal, cd into the cloned repository folder and run:
 $ `./blt.sh clean && ./blt.sh configure`
 
-This creates two files in the same folder,  local.settings.php and project.yml
+This creates two files in the same folder,  `local.settings.php` and `project.yml`
 
-Optional project.yml updates:
+Optional `project.yml` updates:
 
 - update vendor_name, machine_name, human_name, profile > name, etc : for demonstration purposes I went with bolt
 - update local > hostname : I use .vm because of some local dnsmasq setting conflicts
-- create a new github repository on your account to store the project and update the project.yml git > remotes array
+- create a new github repository on your account to store the project and update the `project.yml` git > remotes array
 - Note: you may want to leave the lightning profile and thunder theme, otherwise the default behat tests won't run.
 
 Create your project
@@ -98,12 +98,12 @@ This will create a new folder next to the repository directory that contains the
 
 Note: drush aliases live in `drush/site-aliases/aliases.drushrc.php`. Update these once you're ready to deploy and to do some of the fancier database syncing etc.
 
-Project Setup
+###Project Setup###
 
 $ `cd ../bolt`
 // change directories to the project folder that was created depending on the name you chose
 
-DRUPAL-VM INTEGRATION
+##DRUPAL-VM INTEGRATION##
 
 Drupal-VM is a LAMP stack tuned for drupal development running on a Virtual Machine (VM). All that means is that it's an operating system (OS) running within your host OS. Bolt comes with drupal-vm out of the box, so getting things setup is pretty easy.
 
@@ -114,16 +114,17 @@ http://docs.drupalvm.com/en/latest/
 Initialize the Drupal-vm box folder and default config.yml
 $ `./blt.sh vm:init`
 
-Installing extras
+**Installing extras**
 
 Drupal-vm can install a bunch of libraries for you by updating the configuration file. The documentation on this is pretty lean within the bolt site so you need to go back to the Drupal-vm documentation to see what options you have.
 
 Review the installed_extras section in the default.config.yml
 https://github.com/geerlingguy/drupal-vm/blob/master/default.config.yml
 
-The config.yml file that comes with Bolt will install some logical defaults for the project but in our case, we will want to add a few other things. You do that by copy/pasting the entire installed_extras yml array into the bolt box/config.yml file.
+The config.yml file that comes with Bolt will install some logical defaults for the project but in our case, we will want to add a few other things. You do that by copy/pasting the entire installed_extras yml array into the bolt `box/config.yml` file.
 
 `box/config.yml`
+```YAML
 # Comment out any extra utilities you don't want to install. If you don't want
 # to install *any* extras, make set this value to an empty set, e.g. `[]`.
 installed_extras:
@@ -142,7 +143,7 @@ installed_extras:
   # - varnish
   # - xdebug
   # - xhprof
-
+```
 - Enable adminer, drupalconsole, nodejs, and ruby by un-commenting those lines.
 - Note: if you forget to do this before you do the initial $ vagrant up you can always run $ vagrant reload --provision  this will download and rebuild everything. If that fails, you can try $ vagrant halt && vagrant destroy && vagrant up
 - Every now and then there will be a new release of the box. You will want to update using $ vagrant box update
@@ -150,7 +151,7 @@ installed_extras:
 Note: Drupal-VM ships with php7 which is great and you should switch if you can. However, Acquia cloud does not support php7 yet so if you need to work with php5.6, you need to change the following in your box/config.yml
 
 `box/config.yml`
-```
+```YAML
 # PHP Configuration. Currently-supported versions: 5.6, 7.0.
 # To use 5.6, see: http://docs.drupalvm.com/en/latest/other/php-56/
 # php_version: "7.0"
@@ -205,7 +206,7 @@ $ `logout`
 ##GOTCHAS##
 Make sure to update: drush/site-aliases/drupal-vm.aliases.drushrc.php to the domain specified in your project.yml file.
 
-To NOT install lightning profile by default:
+To **NOT** install lightning profile by default:
 set contrib: false under the profile in use in project.yml.
 https://github.com/acquia/blt/issues/20#issuecomment-216983267
 
@@ -225,7 +226,7 @@ $ `./blt.sh blt:alias`
 You should now be able to run
 $ `blt -l`
 
-SUCCESS!
+###SUCCESS!###
 At this point you should be able to open your browser and load up http://bolt.vm
 
 ##Some cleanup.##
@@ -243,11 +244,10 @@ Push to master (we should probably push to develop and use git-flow feature bran
 $ `git push -u origin master`
 
 Notes:
-
 - the above commands will only work if you have your ssh key uploaded to github. Otherwise you can use the https that github provides, and enter your credentials when prompted.
-- There is a lot of "funkiness" when jumping between Windows and Mac when trying to get the project up and running. For example, after doing the initial setup on windows, then cloning this repo locally on my mac,  running $ ./blt.sh local:setup, I had to then make sure to chmod -R +x scripts in order to get the alias created. This would only be an issue when some people on your team are on macs while others are on windows.
+- There is a lot of "funkiness" when jumping between Windows and Mac when trying to get the project up and running. For example, after doing the initial setup on windows, then cloning this repo locally on my mac,  running $ `./blt.sh local:setup`, I had to then make sure to `chmod -R +x scripts` in order to get the alias created. This would only be an issue when some people on your team are on macs while others are on windows.
 
-Phing and running the included `./blt.sh` tasks
+##Phing and running the included `./blt.sh` tasks##
 
 Phing is just a task runner, similar to grunt, or gulp but built on php instead of js. Phing uses xml to define tasks. I'm not exactly sure the rationale behind choosing phing over js for this project but my assumption has to do with the skillset that most drupal teams come with and the maturity of the project versus something like gulp.
 
@@ -267,14 +267,14 @@ Some commands worth knowing about:
 - `./blt.sh setup:behat` - creates a local.yml file for running behat tests locally
 - `./blt.sh tests:behat` and all of the test commands...
 
-Managing your Drupal 8 Site w/ Composer
+##Managing your Drupal 8 Site w/ Composer##
 
 What's interesting to note about the composer.json file that gets included with Bolt is that there are a number of dependencies set to fixed versions included out of the box. This is a non trivial list of "best practice" modules, libraries, etc. Just learning about what gets curated here is useful.
 
 There are two main way to work with composer
 
-- Editing the `composer.json` file directly
-- Using the Command Line Interface (CLI)
+1. Editing the `composer.json` file directly
+2. Using the Command Line Interface (CLI)
 
 Let's do both.
 
@@ -282,7 +282,7 @@ Let's add two drupal modules, Views and Admin Toolbar, the first we'll add by ed
 
 Note: The `composer.json` repositories array defines the source for the modules and libraries you will include in the `require` and `require-dev` sections below. The official package repository is changing soon so the url for the composer type will need to be updated when that's ready.
 
-Adding Admin Toolbar to `composer.json` manually
+*Adding Admin Toolbar to `composer.json` manually*
 
 - Open up https://packagist.drupal-composer.org
 - Do a search for your module, and click on the link
@@ -291,7 +291,7 @@ Adding Admin Toolbar to `composer.json` manually
 `"drupal/admin_toolbar": "8.1.15"`
 - $ `composer update`
 
-Adding Views to `composer.json` w/ the cli
+*Adding Views to `composer.json` w/ the cli*
 
 - Open up a terminal window and cd to the project root folder
 - $ `composer require drupal/adminimal_theme:8.1.1 --no-update`
@@ -299,7 +299,7 @@ Adding Views to `composer.json` w/ the cli
 
 // Note, this is my preferred approach as it lets you know right away if you have something wrong in the syntax
 
-Theming and front-end development
+##Theming and front-end development##
 
 I'm a fan of bootstrap, mainly because it's what I know and I find it pretty easy to work with.
 
@@ -321,7 +321,7 @@ Install bower
 $ `npm i -g bower`
 
 Create a bower.json for the bootstrap sass project in the new custom theme
-```
+```JSON
 {
   "name": "boltstrap",
   "version": "0.1.0",
@@ -348,7 +348,7 @@ Install your bower dependencies
 $ `bower install`
 
 Create a package.json file with the following contents:
-```
+```JSON
 {
   "name": "basetheme",
   "version": "0.1.0",
@@ -408,7 +408,7 @@ $ `mkdir sass && touch sass/styles.scss`
 The following is a slightly modified version of the styles.scss that comes with bootstrap
 
 /docroot/themes/custom/boltstrap/sass/styles.scss
-```
+```SASS
 /*!
  * Bootstrap v4.0.0-alpha.2 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
@@ -474,7 +474,7 @@ Delete the less folder so we're not confused later
 $ `cd ../ && rm -rf less`
 
 Create a gulpfile.js in your theme folder with the following contents:
-```
+```JS
 'use strict';
 
 var gulp = require('gulp'),
@@ -555,7 +555,7 @@ gulp.task('build', [
 ```
 
 Update your project.yml target-hooks > frontend-build
-```
+```YAML
 target-hooks:
   # Executed when front end assets should be generated.
   frontend-build:
@@ -589,7 +589,7 @@ $ `./blt.sh tests:behat`
 Add the following to custom build.yml file.
 
 build/custom/phing/build.yml
-```
+```YAML
 behat:
   config: ${repo.root}/tests/behat/local.yml
   profile: local
@@ -622,42 +622,42 @@ $ `blt tests:phpunit`
 Windows Gotcha: My first run I got an error on the testGitConfig saying that my `.git/hooks` was not yet created. This is a result of there not being a symbolic link to the hooks folder
 
 On windows, creating a symbolic link on the VM is kind of a process.
-```
+
 Solving Windows `node_modules` nested directory issue
 --------------
 NOTE: FIRST MAKE SURE YOU DON'T HAVE YOUR VM RUNNING (As your regular user and admin)
 
 Create/Edit `Vagrantfile.local` (same directory as the Vagrantfile - make sure to update the path to your folder
-
+```BASH
 config.vm.provider "virtualbox" do |vb|
   vb.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate//c/path/to/your/folder", "1"]
 end
-
+```
 - Restart Cmder as administrator (Right click on the alias and choose run as administrator)
 
 From a terminal on your host machine run:
-$ fsutil behavior set SymlinkEvaluation L2L:1 R2R:1 L2R:1 R2L:1
+$ `fsutil behavior set SymlinkEvaluation L2L:1 R2R:1 L2R:1 R2L:1`
 
 Start up the VM and ssh back in
-$ cd C:\path\to\project && vagrant up && vagrant ssh
+$ `cd C:\path\to\project && vagrant up && vagrant ssh`
 
 From within a VM SSH session:
-$ cd /var/www/bolt && blt setup:git-hooks
+$ `cd /var/www/bolt && blt setup:git-hooks`
 
-HUGE GOTCHA - exit all admin apps (commander and virtual box) before continuing
+**HUGE GOTCHA** - exit all admin apps (commander and virtual box) before continuing
 
-$ logout
-$ vagrant halt
+$ `logout`
+$ `vagrant halt`
 
 EXIT Cmder!!!
 -----
  Note: If you don't exit out of your admin terminal you will get a UID error when trying to vagrant up again as your normal user.
 -----
-```
+
 
 ##BUILDING/DEPLOYING##
 
-Manually (should only need this for "hot fixes")
+###Manually (should only need this for "hot fixes")###
 
 Create the build artifact
 
@@ -670,7 +670,7 @@ Alternatively you can run this "all-in-one" command that will build, commit, and
 $ `./blt.sh deploy -Ddeploy.branch=develop-build -Ddeploy.commitMsg='BLT-123: The commit message.'`
 // this will download all dependencies with composer, commit, and push to a develop-build branch
 
-Automatically
+###Automatically###
 
 - Standard git process kicks off Travis which then pushes back to develop-deploy branch
 
