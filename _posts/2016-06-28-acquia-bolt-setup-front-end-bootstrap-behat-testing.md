@@ -311,11 +311,14 @@ $ `cp -r docroot/themes/contrib/bootstrap/starterkits/less docroot/themes/custom
 
 Rename all of the THEMENAME.* files in your new custom subtheme
 
-- $ `mv THEMENAME.libraries.yml boltstrap.l ibraries.yml`
-- $ `mv THEMENAME.starterkit.yml boltstrap. yml`
+- $ `mv THEMENAME.libraries.yml boltstrap.libraries.yml`
+- $ `mv THEMENAME.starterkit.yml boltstrap.info.yml`
 - $ `mv THEMENAME.theme boltstrap.theme`
 
 Edit your THEME.yml file and change the name and anything else you want.
+
+Create a `js/script.js` file
+$ mkdir js && touch js/script.js
 
 Install bower
 $ `npm i -g bower`
@@ -350,49 +353,48 @@ $ `bower install`
 Create a package.json file with the following contents:
 ```JSON
 {
-  "name": "basetheme",
+  "name": "custom_theme",
   "version": "0.1.0",
   "description": "baseline implementation of theme dependencies",
   "repository": {},
   "devDependencies": {
-  "bower": "1.7.x",
-  "browser-sync": "2.8.x",
-  "del": "1.2.x",
-  "eslint": "0.24.x",
-  "eyeglass": "0.7.x",
-  "gulp": "3.8.x",
-  "gulp-autoprefixer": "3.1.x",
-  "gulp-concat": "2.6.x",
-  "gulp-css-globbing": "0.1.x",
-  "gulp-sass-glob": "1.0.5",
-  "gulp-debug": "2.1.x",
-  "gulp-eslint": "1.0.x",
-  "gulp-load-plugins": "0.10.x",
-  "gulp-rename": "1.2.x",
-  "gulp-sass": "2.0.x",
-  "gulp-sass-lint": "1.0.x",
-  "gulp-shell": "0.4.x",
-  "gulp-size": "1.2.x",
-  "gulp-sourcemaps": "1.5.x",
-  "gulp-uglify": "1.4.x",
-  "kss": "2.3.1",
-  "node-sass": "3.4.x",
-  "node-sass-import-once": "1.2.x",
-  "run-sequence": "1.1.x",
-  "sass-lint": "1.1.x",
-  "stream-browserify": "2.0.x",
-  "yargs": "3.29.0"
+    "bower": "1.7.x",
+    "browser-sync": "2.8.x",
+    "del": "1.2.x",
+    "eslint": "0.24.x",
+    "eyeglass": "0.7.x",
+    "gulp": "3.8.x",
+    "gulp-autoprefixer": "3.1.x",
+    "gulp-concat": "2.6.x",
+    "gulp-css-globbing": "0.1.x",
+    "gulp-sass-glob": "1.0.5",
+    "gulp-debug": "2.1.x",
+    "gulp-eslint": "1.0.x",
+    "gulp-load-plugins": "0.10.x",
+    "gulp-rename": "1.2.x",
+    "gulp-sass": "2.0.x",
+    "gulp-sass-lint": "1.0.x",
+    "gulp-shell": "0.4.x",
+    "gulp-size": "1.2.x",
+    "gulp-sourcemaps": "1.5.x",
+    "gulp-uglify": "1.4.x",
+    "kss": "2.3.1",
+    "node-sass": "3.4.x",
+    "node-sass-import-once": "1.2.x",
+    "run-sequence": "1.1.x",
+    "sass-lint": "1.1.x",
+    "stream-browserify": "2.0.x",
+    "yargs": "3.29.0"
   },
   "engines": {
-  "node": "0.12.x"
+    "node": "0.12.x"
   },
   "private": true,
   "//": "The postinstall script is needed to work-around this Drupal core bug: https://www.drupal.org/node/2329453",
   "scripts": {
-  "install-npm-bower" : "npm install && bower install;",
-  "postinstall": "find node_modules/ -name '*.info' -type f -delete",
-  "build": "gulp",
-  "watch": "gulp watch"
+    "postinstall": "find node_modules/ -name '*.info' -type f -delete",
+    "build": "gulp",
+    "watch": "gulp watch"
   }
 }
 ```
@@ -475,73 +477,69 @@ $ `cd ../ && rm -rf less`
 
 Create a gulpfile.js in your theme folder with the following contents:
 ```JS
+/**
+ * @file
+ * Defines build tasks.
+ *
+ * @fileJshint globalstrict: true, node: true */
+
 'use strict';
+var path = require('path');
 
+var options = {};
+
+// #############################
+// Edit these paths and options.
+// #############################.
+options.rootPath = {
+  project: __dirname + '/',
+  theme: __dirname + '/'
+};
+
+options.theme = {
+  root: options.rootPath.theme,
+  css: options.rootPath.theme + 'css/',
+  sass: options.rootPath.theme + 'sass/',
+  js: options.rootPath.theme + 'js/'
+};
+
+// Define the paths to the JS files to lint.
+options.eslint = {
+  files: [
+    options.theme.js + '**/*.js',
+    '!' + options.theme.js + '**/*.min.js'
+  ]
+};
+
+// If your files are on a network share, you may want to turn on polling for
+// Gulp and Compass watch commands. Since polling is less efficient, we disable
+// polling by default.
+var enablePolling = false;
+if (!enablePolling) {
+  options.gulpWatchOptions = {};
+}
+else {
+  options.gulpWatchOptions = {interval: 1000, mode: 'poll'};
+}
+
+// ################################
+// Load Gulp and tools we will use.
+// ################################.
 var gulp = require('gulp'),
+  $ = require('gulp-load-plugins')(),
+  autoprefix  = require('gulp-autoprefixer'),
+  del = require('del'),
+  runSequence = require('run-sequence'),
+  sassLint = require('gulp-sass-lint'),
+  sourcemaps = require('gulp-sourcemaps'),
+  globbing = require('gulp-css-globbing'),
+  sassglob = require('gulp-sass-glob'),
   sass = require('gulp-sass'),
-  eslint = require('gulp-eslint'),
-  notify = require('gulp-notify'),
-  livereload = require('gulp-livereload'),
-  sourcemaps = require('gulp-sourcemaps');
-
-// Sass
-gulp.task('styles', function() {
-  return gulp.src(['sass/**/*.scss'])
-  .pipe(sourcemaps.init())
-  .pipe(sass({outputStyle: 'expanded'})
-  .on('error', notify.onError(function (error) {
-  return '\nAn error occurred while compiling sass.\n' + error.message;
-  })
-  )
-  )
-  .pipe(notify({
-  title: 'SUCCESS!',
-  message: 'Styles task complete' }))
-  .pipe(sourcemaps.write('./'))
-  .pipe(gulp.dest('css'));
-});
-
-// Lint Scripts Fails internally
-gulp.task('lint', function () {
-  return gulp.src('js/script.js')
-  .pipe(eslint())
-  .pipe(eslint.format())
-  .pipe(eslint.results(function(results) {
-  var count = results.errorCount;
-  if (count > 0) {
-  throw new Error('Failed with Errors');
-  }
-  }))
-  .on('error', notify.onError(function (error) {
-  return 'An error occurred while compiling JS.';
-  }))
-  .pipe(eslint.failAfterError());
-});
-
-// Scripts lint first and then success only if it doesn't fail
-gulp.task('scripts', ['lint'], function () {
-  return gulp.src('js/script.js')
-  .pipe(notify({
-  title: 'SUCCESS!',
-  message: 'JS task complete' }));
-});
-
-// Watch
-gulp.task('watch', function() {
-
-  // Watch .scss files
-  gulp.watch('sass/**/*.scss', ['styles']);
-
-  // Watch .js files
-  gulp.watch('js/**/*.js', ['scripts']);
-
-  // Create LiveReload server
-  livereload.listen();
-
-  // Watch any files in dist/, reload on change
-  gulp.watch(['css/**.css', '!css/**.css.map']).on('change', livereload.changed);
-
-});
+  debug = require('gulp-debug'),
+  importOnce = require('node-sass-import-once'),
+  concat = require('gulp-concat'),
+  uglify = require('gulp-uglify'),
+  rename = require('gulp-rename');
 
 // The default task.
 gulp.task('default', ['build']);
@@ -550,8 +548,135 @@ gulp.task('default', ['build']);
 // Build everything.
 // #################.
 gulp.task('build', [
-  'styles', 'scripts'
-]);
+  'styles:production'
+], function (cb) {
+  // Run linting last, otherwise its output gets lost.
+  runSequence(['lint:js'], cb);
+});
+
+// Same as build but creates expanded css with sourcemaps.
+gulp.task('build:dev', ['styles'], function (cb) {
+  // Run linting last, otherwise its output gets lost.
+  runSequence(['lint:js'], cb);
+});
+
+// ##########
+// Build CSS.
+// ##########.
+gulp.task('styles', ['clean:css'], function () {
+  return gulp.src(options.theme.sass + 'styles.scss')
+    .pipe(sourcemaps.init())
+    .pipe(sassglob())
+    .pipe(globbing({
+      extensions: ['.scss']
+    }))
+      .pipe(sass({
+        errLogToConsole: true,
+        outputStyle: 'expanded'
+      }))
+        .pipe(autoprefix({
+          browsers: ['last 2 versions'],
+          cascade: false
+        }))
+          .pipe(sourcemaps.write())
+          .pipe(gulp.dest(options.theme.css));
+});
+
+gulp.task('styles:production', ['clean:css'], function () {
+  return gulp.src(options.theme.sass + 'styles.scss')
+    .pipe(globbing({
+      // Configure it to use SCSS files.
+      extensions: ['.scss']
+    }))
+      .pipe(sassglob())
+      .pipe(sass({
+        errLogToConsole: true,
+        outputStyle: 'compressed'
+      }))
+        .pipe(autoprefix({
+          browsers: ['last 2 versions'],
+          cascade: false
+        }))
+          .pipe(gulp.dest(options.theme.css));
+});
+
+var flags = [], values;
+
+// #########################
+// Lint Sass and JavaScript.
+// #########################.
+gulp.task('lint', function (cb) {
+  runSequence(['lint:js', 'lint:sass'], cb);
+});
+
+// Lint JavaScript.
+gulp.task('lint:js', function () {
+  return gulp.src(options.eslint.files)
+    .pipe($.eslint())
+    .pipe($.eslint.format());
+});
+
+// Lint JavaScript and throw an error for a CI to catch.
+gulp.task('lint:js-with-fail', function () {
+  return gulp.src(options.eslint.files)
+    .pipe($.eslint())
+    .pipe($.eslint.format())
+    .pipe($.eslint.failOnError());
+});
+
+// Lint Sass.
+gulp.task('lint:sass', function () {
+  return gulp.src(options.theme.sass + '**/*.s+(a|c)ss')
+    .pipe(sassLint())
+    .pipe(sassLint.format());
+});
+
+// Lint Sass and throw an error for a CI to catch.
+gulp.task('lint:sass-with-fail', function () {
+  return gulp.src(options.theme.sass + '**/*.s+(a|c)ss')
+    .pipe(sassLint())
+    .pipe(sassLint.format())
+    .pipe(sassLint.failOnError());
+});
+
+// ##############################
+// Watch for changes and rebuild.
+// ##############################.
+gulp.task('watch', ['watch:js'], function (cb) {
+  // Since watch:css will never return, call it last (not as dependency.).
+  runSequence(['watch:css'], cb);
+});
+
+gulp.task('watch:css', ['styles'], function () {
+  return gulp.watch([
+    options.theme.sass + '**/*.scss'
+  ], options.gulpWatchOptions, ['styles']);
+});
+
+gulp.task('watch:js', ['lint:js'], function () {
+  return gulp.watch([options.theme.js + '**/*.js'], options.gulpWatchOptions, [
+    'lint:js'
+  ]);
+});
+
+// ######################
+// Clean all directories.
+// ######################.
+gulp.task('clean', ['clean:css']);
+
+// Clean CSS files.
+gulp.task('clean:css', function (cb) {
+  del([
+    options.theme.root + '**/.sass-cache',
+    options.theme.css + '**/*.css',
+    options.theme.css + '**/*.map'
+  ], {force: true}, cb);
+});
+
+// Resources used to create this gulpfile.js:
+// - http://cgit.drupalcode.org/zen/tree/STARTERKIT/gulpfile.js?h=7.x-6.x
+// - https://github.com/google/web-starter-kit/blob/master/gulpfile.js
+// - https://github.com/north/generator-north/blob/master/app/templates/Gulpfile.js
 ```
 
 Update your project.yml target-hooks > frontend-build
