@@ -278,7 +278,7 @@ There are two main way to work with composer
 
 Let's do both.
 
-Let's add two drupal modules, Views and Admin Toolbar, the first we'll add by editing the composer file, the second we'll add via the cli.
+Let's add two drupal modules, Adminimal Theme and Admin Toolbar, the first we'll add by editing the composer file, the second we'll add via the cli.
 
 Note: The `composer.json` repositories array defines the source for the modules and libraries you will include in the `require` and `require-dev` sections below. The official package repository is changing soon so the url for the composer type will need to be updated when that's ready.
 
@@ -291,7 +291,7 @@ Note: The `composer.json` repositories array defines the source for the modules 
 `"drupal/admin_toolbar": "8.1.15"`
 - $ `composer update`
 
-*Adding Views to `composer.json` w/ the cli*
+*Adding Adminimal Theme to `composer.json` w/ the cli*
 
 - Open up a terminal window and cd to the project root folder
 - $ `composer require drupal/adminimal_theme:8.1.1 --no-update`
