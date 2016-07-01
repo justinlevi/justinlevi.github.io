@@ -913,14 +913,15 @@ Sadly this does not work on Windows.
 - Issue posted on the Acquia Bolt github repo. Seems to be an issue with Vagrant and/or NFS
 
 Notes/Links:
-- Vagrant https://www.vagrantup.com
-- Virtual Box https://www.virtualbox.org/wiki/Downloads
-- Acquia Bolt https://github.com/acquia/blt
-- Drupal VM http://www.drupalvm.com
-- Behat  http://docs.behat.org/en/v3.0
-- PHPUnit https://phpunit.de
-- Phing https://www.phing.info
-- Travis-CI Tips https://docs.travis-ci.com/user/deployment/heroku
+
+- [Vagrant](https://www.vagrantup.com)
+- [Virtual Box](https://www.virtualbox.org/wiki/Downloads)
+- [Acquia Bolt](https://github.com/acquia/blt)
+- [Drupal VM](http://www.drupalvm.com)
+- [Behat](http://docs.behat.org/en/v3.0)
+- [PHPUnit](https://phpunit.de)
+- [Phing](https://www.phing.info)
+- [Travis-CI Tips](https://docs.travis-ci.com/user/deployment/heroku)
 
 **Pro Tip**
 
