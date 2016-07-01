@@ -1,11 +1,13 @@
 ---
 layout: post
-title: "Setting up Acquia Bolt"
-subtitle: "Using Composer to manage Drupal, Bootstrap Sass custom theme, and behat testing"
+title: "Acquia Bolt"
+subtitle: "Basic setup, using Composer to manage Drupal 8, Bootstrap Sass custom theme, Behat testing"
 bg-image: "post-bg.jpg"
 
 date: 2016-06-28
 ---
+
+What is Bolt?
 
 An opinionated holistic approach to building Drupal projects.
 
@@ -15,6 +17,16 @@ Drupal is a lot more than just downloading and configuring modules. The ecosyste
 
 Screen Grab Videos
 [https://www.youtube.com/playlist?list=PLfaK4-crenFBXSyjVHf3apHC4uU_ULpSR](https://www.youtube.com/playlist?list=PLfaK4-crenFBXSyjVHf3apHC4uU_ULpSR)
+
+**Videos**
+
+- [x] Initial Setup video
+- [x] Drupal-VM Integration
+- [x] Phing & Composer
+- [ ] Front-end setup
+- [ ] Deployment and Travis Video
+- [ ] Deploying to live site
+
 
 ---
 
@@ -41,15 +53,6 @@ Topics not covered, maybe next time:
 
 Disclaimer: I'm definitely not an expert when it comes to Bolt. I'm a fan and I've invested a good chunk of time learning as much as I can. This talk is really just walking through what I've learned so far.
 
-**Videos**
-
-- [x] Initial Setup video
-- [x] Drupal-VM Integration
-- [x] Phing & Composer
-- [ ] Front-end setup
-- [ ] Deployment and Travis Video
-- [ ] Deploying to live site
-
 ## OVERVIEW
 
 ***Problem Statement:***
@@ -74,12 +77,12 @@ Teams can focus on the unique business impact of their project versus spending t
 I ended up going through this process from within another linux vm and then copying the files/folders back to my windows file system. I also needed to copy and manually modify the scripts/drupal-vm/config.yml and put it into my box folder. I had to copy the scripts/drupal-vm/Vagrantfile into the project root folder as well.  Trying to do this any other way caused lots of issues I couldn't figure out.*
 
 From the onboarding readme:
+
 ```
 We highly recommend that you do not use Windows directly for development. Many development tools (e.g., drush, gulp, etc.) are not built or tested for Windows compatibility. Furthermore, most CI solutions (e.g., Travis CI, Drupal CI, etc.) do not permit testing on Windows OS. Similarly, BLT cannot be fully tested on Windows and is unsupported on this platform.
 ```
-**
-If you're on windows, don't let this scare you though. There are ton of things you can learn here and you can get the project working.
-**
+
+**If you're on windows, don't let this scare you though. There are ton of things you can learn here and you can get the project working.**
 
 **Requirements**
 - Vagrant
