@@ -2,7 +2,7 @@
 layout: post
 title: "Acquia Bolt"
 subtitle: "Basic setup, using Composer to manage Drupal 8, Bootstrap Sass custom theme, Behat testing"
-bg-image: "post-bg.jpg"
+bg-image: "bolt.jpg"
 
 date: 2016-06-28
 ---
