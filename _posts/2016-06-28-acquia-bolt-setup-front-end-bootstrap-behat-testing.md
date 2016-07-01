@@ -48,7 +48,7 @@ Disclaimer: I'm definitely not an expert when it comes to Bolt. I'm a fan and I'
 - [ ] Deployment and Travis Video
 - [ ] Deploying to live site
 
-##OVERVIEW##
+##OVERVIEW
 
 ***Problem Statement:***
 
@@ -60,7 +60,7 @@ Leveraging Bolt takes the guess work out of trying to get many desperate technol
 
 Teams can focus on the unique business impact of their project versus spending time on how the project architecture should look.
 
-##HOW TO GET SETUP##
+##HOW TO GET SETUP
 
 ***Required Reading:***
 
@@ -83,7 +83,7 @@ If you're on windows, don't let this scare you though. There are ton of things y
 - Vagrant
 - VirtualBox
 
-###Initial Setup###
+###Initial Setup
 
 Clone the github.com/acquia/blt repository locally
 $ `git clone github.com/acquia/blt`
@@ -107,12 +107,12 @@ This will create a new folder next to the repository directory that contains the
 
 Note: drush aliases live in `drush/site-aliases/aliases.drushrc.php`. Update these once you're ready to deploy and to do some of the fancier database syncing etc.
 
-###Project Setup###
+###Project Setup
 
 $ `cd ../bolt`
 // change directories to the project folder that was created depending on the name you chose
 
-##DRUPAL-VM INTEGRATION##
+##DRUPAL-VM INTEGRATION
 
 Drupal-VM is a LAMP stack tuned for drupal development running on a Virtual Machine (VM). All that means is that it's an operating system (OS) running within your host OS. Bolt comes with drupal-vm out of the box, so getting things setup is pretty easy.
 
@@ -212,7 +212,7 @@ $ `cd /var/www/bolt && ls -ahl`
 Logout of the ssh session
 $ `logout`
 
-##GOTCHAS##
+##GOTCHAS
 Make sure to update: drush/site-aliases/drupal-vm.aliases.drushrc.php to the domain specified in your project.yml file.
 
 To **NOT** install lightning profile by default:
@@ -235,10 +235,10 @@ $ `./blt.sh blt:alias`
 You should now be able to run
 $ `blt -l`
 
-###SUCCESS!###
+###SUCCESS!
 At this point you should be able to open your browser and load up http://bolt.vm
 
-##Some cleanup.##
+##Some cleanup.
 
 commit all of your changes to your github repository
 $ `git branch develop && git add -A && git commit -m "First bolt commit."`
@@ -256,7 +256,7 @@ Notes:
 - the above commands will only work if you have your ssh key uploaded to github. Otherwise you can use the https that github provides, and enter your credentials when prompted.
 - There is a lot of "funkiness" when jumping between Windows and Mac when trying to get the project up and running. For example, after doing the initial setup on windows, then cloning this repo locally on my mac,  running $ `./blt.sh local:setup`, I had to then make sure to `chmod -R +x scripts` in order to get the alias created. This would only be an issue when some people on your team are on macs while others are on windows.
 
-##Phing and running the included `./blt.sh` tasks##
+##Phing and running the included `./blt.sh` tasks
 
 Phing is just a task runner, similar to grunt, or gulp but built on php instead of js. Phing uses xml to define tasks. I'm not exactly sure the rationale behind choosing phing over js for this project but my assumption has to do with the skillset that most drupal teams come with and the maturity of the project versus something like gulp.
 
@@ -276,7 +276,7 @@ Some commands worth knowing about:
 - `./blt.sh setup:behat` - creates a local.yml file for running behat tests locally
 - `./blt.sh tests:behat` and all of the test commands...
 
-##Managing your Drupal 8 Site w/ Composer##
+##Managing your Drupal 8 Site w/ Composer
 
 What's interesting to note about the composer.json file that gets included with Bolt is that there are a number of dependencies set to fixed versions included out of the box. This is a non trivial list of "best practice" modules, libraries, etc. Just learning about what gets curated here is useful.
 
@@ -308,7 +308,7 @@ Note: The `composer.json` repositories array defines the source for the modules 
 
 // Note, this is my preferred approach as it lets you know right away if you have something wrong in the syntax
 
-##Theming and front-end development##
+##Theming and front-end development
 
 I'm a fan of bootstrap, mainly because it's what I know and I find it pretty easy to work with.
 
@@ -703,7 +703,7 @@ target-hooks:
 This gives you the ability to now run
 $ `./blt.sh frontend:build`
 
-##BEHAT & PHPUNIT TESTING##
+##BEHAT & PHPUNIT TESTING
 
 Well... mostly behat because phpunit gets kinda nutty and I ran out of time...
 
@@ -748,7 +748,7 @@ https://github.com/acquia/blt/blob/8.x/template/tests/README.md
 Troubleshooting
 https://github.com/acquia/blt/issues/176#issuecomment-227288500
 
-##PHPUNIT##
+##PHPUNIT
 
 $ `blt tests:phpunit`
 // This will create a reports folder which contains a nicely formatted html report.
@@ -789,9 +789,9 @@ EXIT Cmder!!!
 -----
 
 
-##BUILDING/DEPLOYING##
+##BUILDING/DEPLOYING
 
-###Manually (should only need this for "hot fixes")###
+###Manually (should only need this for "hot fixes")
 
 Create the build artifact
 
@@ -804,7 +804,7 @@ Alternatively you can run this "all-in-one" command that will build, commit, and
 $ `./blt.sh deploy -Ddeploy.branch=develop-build -Ddeploy.commitMsg='BLT-123: The commit message.'`
 // this will download all dependencies with composer, commit, and push to a develop-build branch
 
-###Automatically###
+###Automatically
 
 - Standard git process kicks off Travis which then pushes back to develop-deploy branch
 
