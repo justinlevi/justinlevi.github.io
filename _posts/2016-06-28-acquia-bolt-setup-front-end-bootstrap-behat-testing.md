@@ -42,12 +42,12 @@ Disclaimer: I'm definitely not an expert when it comes to Bolt. I'm a fan and I'
 
 *Videos*
 
-  * [x] Initial Setup video
-  * [x] Drupal-VM Integration
-  * [x] Phing & Composer
-  * [ ] Front-end setup
-  * [ ] Deployment and Travis Video
-  * [ ] Deploying to live site
+- [x] Initial Setup video
+- [x] Drupal-VM Integration
+- [x] Phing & Composer
+- [ ] Front-end setup
+- [ ] Deployment and Travis Video
+- [ ] Deploying to live site
 
 ## OVERVIEW
 
