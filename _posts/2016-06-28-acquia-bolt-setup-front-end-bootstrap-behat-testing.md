@@ -14,7 +14,7 @@ Drupal is a lot more than just downloading and configuring modules. The ecosyste
 ---
 
 Screen Grab Videos
-https://www.youtube.com/playlist?list=PLfaK4-crenFBXSyjVHf3apHC4uU_ULpSR
+[https://www.youtube.com/playlist?list=PLfaK4-crenFBXSyjVHf3apHC4uU_ULpSR](https://www.youtube.com/playlist?list=PLfaK4-crenFBXSyjVHf3apHC4uU_ULpSR)
 
 ---
 
@@ -33,6 +33,7 @@ This talk will cover the following:
 This talk is going to be less of a lecture and more of a demonstration. I'm going to be moving through a lot of this stuff pretty quickly but hopefully this gives everyone a high level overview of the technology.
 
 Topics not covered, maybe next time:
+
 - Features Integration
 - Custom Module w/ Drupal console, building in Unit Testing
 - Automated testing using live content
@@ -40,7 +41,7 @@ Topics not covered, maybe next time:
 
 Disclaimer: I'm definitely not an expert when it comes to Bolt. I'm a fan and I've invested a good chunk of time learning as much as I can. This talk is really just walking through what I've learned so far.
 
-*Videos*
+**Videos**
 
 - [x] Initial Setup video
 - [x] Drupal-VM Integration
@@ -65,9 +66,9 @@ Teams can focus on the unique business impact of their project versus spending t
 
 ***Required Reading:***
 
-- https://github.com/acquia/blt/blob/8.x/template/readme/onboarding.md
-- https://github.com/acquia/blt/tree/8.x/template/readme
-- https://github.com/acquia/blt/blob/8.x/template/tests/README.md
+- [https://github.com/acquia/blt/blob/8.x/template/readme/onboarding.md](https://github.com/acquia/blt/blob/8.x/template/readme/onboarding.md)
+- [https://github.com/acquia/blt/blob/8.x/template/readme/onboarding.md](https://github.com/acquia/blt/blob/8.x/template/readme/onboarding.md)
+- [https://github.com/acquia/blt/blob/8.x/template/tests/README.md](https://github.com/acquia/blt/blob/8.x/template/tests/README.md)
 
 *Note, doing this on windows is possible but it is rough
 I ended up going through this process from within another linux vm and then copying the files/folders back to my windows file system. I also needed to copy and manually modify the scripts/drupal-vm/config.yml and put it into my box folder. I had to copy the scripts/drupal-vm/Vagrantfile into the project root folder as well.  Trying to do this any other way caused lots of issues I couldn't figure out.*
