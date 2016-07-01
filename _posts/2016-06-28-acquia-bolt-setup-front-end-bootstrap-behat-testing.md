@@ -41,6 +41,7 @@ Topics not covered, maybe next time:
 Disclaimer: I'm definitely not an expert when it comes to Bolt. I'm a fan and I've invested a good chunk of time learning as much as I can. This talk is really just walking through what I've learned so far.
 
 *Videos*
+
   * [x] Initial Setup video
   * [x] Drupal-VM Integration
   * [x] Phing & Composer
