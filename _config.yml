@@ -1,4 +1,5 @@
 name: Justin Winter
+author: Justin Winter
 permalink: /blog/:year/:month/:day/:title
 gems:
   - jekyll-feed
