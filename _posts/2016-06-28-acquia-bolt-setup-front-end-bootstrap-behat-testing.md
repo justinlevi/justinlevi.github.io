@@ -1,17 +1,17 @@
 ---
 layout: post
-title: "Acquia Bolt"
+title: "Acquia BLT"
 subtitle: "Basic setup, using Composer to manage Drupal 8, Bootstrap Sass custom theme, Behat testing"
 bg-image: "bolt.jpg"
 
 date: 2016-06-28
 ---
 
-What is Bolt?
+What is BLT?
 
 An opinionated holistic approach to building Drupal projects.
 
-Drupal is a lot more than just downloading and configuring modules. The ecosystem to build, test, and deploy is fragmented and confusing. In April this year, Acquia released an open source project called Bolt that was born out of Acquia's Professional Services team. This project is a collection of "best practices" from the folks who know the ins and outs of Drupal, and the ecosystem that Drupal operates in, better than anyone. If you are not aware of this project, you should be.
+Drupal is a lot more than just downloading and configuring modules. The ecosystem to build, test, and deploy is fragmented and confusing. In April this year, Acquia released an open source project called BLT that was born out of Acquia's Professional Services team. This project is a collection of "best practices" from the folks who know the ins and outs of Drupal, and the ecosystem that Drupal operates in, better than anyone. If you are not aware of this project, you should be.
 
 ---
 
@@ -32,7 +32,7 @@ Screen Grab Videos
 
 This talk will cover the following:
 
-- Overview of what bolt is
+- Overview of what BLT is
 - How to get setup
 - Drupal-VM integration
 - Phing and running the included ./blt.sh tasks
@@ -51,7 +51,7 @@ Topics not covered, maybe next time:
 - Automated testing using live content
 - Visual regression testing
 
-Disclaimer: I'm definitely not an expert when it comes to Bolt. I'm a fan and I've invested a good chunk of time learning as much as I can. This talk is really just walking through what I've learned so far.
+Disclaimer: I'm definitely not an expert when it comes to BLT. I'm a fan and I've invested a good chunk of time learning as much as I can. This talk is really just walking through what I've learned so far.
 
 ## OVERVIEW
 
@@ -61,7 +61,7 @@ As Drupal web designers and developers, we're faced with a ton of decisions as f
 
 ***How this project helps:***
 
-Leveraging Bolt takes the guess work out of trying to get many desperate technologies to all work in concert. Bolt can also help create a unified development platform for larger teams, which should improve productivity. Bolt has the potential to positively impact everything from onboarding new developers to continuous delivery of a product.
+Leveraging BLT takes the guess work out of trying to get many desperate technologies to all work in concert. BLT can also help create a unified development platform for larger teams, which should improve productivity. BLT has the potential to positively impact everything from onboarding new developers to continuous delivery of a product.
 
 Teams can focus on the unique business impact of their project versus spending time on how the project architecture should look.
 
@@ -103,7 +103,7 @@ This creates two files in the same folder,  `local.settings.php` and `project.ym
 
 Optional `project.yml` updates:
 
-- update vendor_name, machine_name, human_name, profile > name, etc : for demonstration purposes I went with bolt
+- update vendor_name, machine_name, human_name, profile > name, etc : for demonstration purposes I went with blt_demo
 - update local > hostname : I use .vm because of some local dnsmasq setting conflicts
 - create a new github repository on your account to store the project and update the `project.yml` git > remotes array
 - Note: you may want to leave the lightning profile and thunder theme, otherwise the default behat tests won't run.
@@ -118,12 +118,12 @@ Note: drush aliases live in `drush/site-aliases/aliases.drushrc.php`. Update the
 
 ### Project Setup
 
-$ `cd ../bolt`
+$ `cd ../blt_demo`
 // change directories to the project folder that was created depending on the name you chose
 
 ## DRUPAL-VM INTEGRATION
 
-Drupal-VM is a LAMP stack tuned for drupal development running on a Virtual Machine (VM). All that means is that it's an operating system (OS) running within your host OS. Bolt comes with drupal-vm out of the box, so getting things setup is pretty easy.
+Drupal-VM is a LAMP stack tuned for drupal development running on a Virtual Machine (VM). All that means is that it's an operating system (OS) running within your host OS. BLT comes with drupal-vm out of the box, so getting things setup is pretty easy.
 
 First, you need to have Vagrant and Virtual Machine downloaded and installed. Most of the time, the stock settings should work for you but if not, there are a ton of configuration options that you can checkout at the drupal-vm github repo. You can pretty easily turn on/off things like nodjs and ruby among many other useful libraries and packages. The documenation is great, so check it out.
 
@@ -135,12 +135,12 @@ $ `./blt.sh vm:init`
 
 **Installing extras**
 
-Drupal-vm can install a bunch of libraries for you by updating the configuration file. The documentation on this is pretty lean within the bolt site so you need to go back to the Drupal-vm documentation to see what options you have.
+Drupal-vm can install a bunch of libraries for you by updating the configuration file. The documentation on this is pretty lean within the BLT github site so you need to go back to the Drupal-vm documentation to see what options you have.
 
 Review the installed_extras section in the default.config.yml
 https://github.com/geerlingguy/drupal-vm/blob/master/default.config.yml
 
-The config.yml file that comes with Bolt will install some logical defaults for the project but in our case, we will want to add a few other things. You do that by copy/pasting the entire installed_extras yml array into the bolt `box/config.yml` file.
+The config.yml file that comes with BLT will install some logical defaults for the project but in our case, we will want to add a few other things. You do that by copy/pasting the entire installed_extras yml array into the blt `box/config.yml` file.
 
 `box/config.yml`
 
@@ -223,7 +223,7 @@ $ `vagrant ssh`
 
 Change the working directory and run the setup task
 
-$ `cd /var/www/bolt && ls -ahl`
+$ `cd /var/www/blt && ls -ahl`
 // This will just verify that the folder syncing is setup and working
 
 Logout of the ssh session
@@ -243,7 +243,7 @@ Update your hosts file
 - // Windows: `C:\Windows\System32\drivers\etc\hosts`
 - // Mac: `/private/etc/hosts`
 
-`192.168.88.88 bolt.vm adminer.bolt.vm`
+`192.168.88.88 blt.vm adminer.blt.vm`
 
 Install drupal, create local settings and local behat
 
@@ -259,20 +259,20 @@ You should now be able to run
 $ `blt -l`
 
 ### SUCCESS!
-At this point you should be able to open your browser and load up http://bolt.vm
+At this point you should be able to open your browser and load up http://blt.vm
 
 ## Some cleanup.
 
 commit all of your changes to your github repository
 
-$ `git branch develop && git add -A && git commit -m "First bolt commit."`
+$ `git branch develop && git add -A && git commit -m "First blt commit."`
 
 $ `git config --global --edit`
 // set your name and email. This info will display on github to identify who submitted each commit
 
 Add your remote github url
 
-$ `git remote add origin git@github.com:justinlevi/bolt.git`
+$ `git remote add origin git@github.com:justinlevi/blt.git`
 // swap out with your repo address
 
 Push to master (we should probably push to develop and use git-flow feature branches)
@@ -306,7 +306,7 @@ Some commands worth knowing about:
 
 ## Managing your Drupal 8 Site w/ Composer
 
-What's interesting to note about the composer.json file that gets included with Bolt is that there are a number of dependencies set to fixed versions included out of the box. This is a non trivial list of "best practice" modules, libraries, etc. Just learning about what gets curated here is useful.
+What's interesting to note about the composer.json file that gets included with BLT is that there are a number of dependencies set to fixed versions included out of the box. This is a non trivial list of "best practice" modules, libraries, etc. Just learning about what gets curated here is useful.
 
 There are two main way to work with composer
 
@@ -346,13 +346,13 @@ $ `"drupal/bootstrap":"8.3.0-beta3"`
 
 Create a subtheme from one of the starter kits. Use the less version even though we'll be using the sass.
 
-$ `cp -r docroot/themes/contrib/bootstrap/starterkits/less docroot/themes/custom/boltstrap`
+$ `cp -r docroot/themes/contrib/bootstrap/starterkits/less docroot/themes/custom/bltstrap`
 
 Rename all of the THEMENAME.* files in your new custom subtheme
 
-- $ `mv THEMENAME.libraries.yml boltstrap.libraries.yml`
-- $ `mv THEMENAME.starterkit.yml boltstrap.info.yml`
-- $ `mv THEMENAME.theme boltstrap.theme`
+- $ `mv THEMENAME.libraries.yml bltstrap.libraries.yml`
+- $ `mv THEMENAME.starterkit.yml bltstrap.info.yml`
+- $ `mv THEMENAME.theme bltstrap.theme`
 
 Edit your THEME.yml file and change the name and anything else you want.
 
@@ -368,7 +368,7 @@ Create a bower.json for the bootstrap sass project in the new custom theme
 
 ```JSON
 {
-  "name": "boltstrap",
+  "name": "bltstrap",
   "version": "0.1.0",
   "authors": [],
   "description": "theme bower file",
@@ -455,7 +455,7 @@ $ `mkdir sass && touch sass/styles.scss`
 
 The following is a slightly modified version of the styles.scss that comes with bootstrap
 
-/docroot/themes/custom/boltstrap/sass/styles.scss
+/docroot/themes/custom/bltstrap/sass/styles.scss
 
 ```SASS
 /*!
@@ -736,7 +736,7 @@ target-hooks:
   # Executed when front end assets should be generated.
   frontend-build:
   # E.g., ${docroot}/sites/all/themes/custom/mytheme.
-  dir: ${docroot}/themes/custom/boltstrap
+  dir: ${docroot}/themes/custom/bltstrap
   # E.g., `npm install` or `bower install`.
   command: npm build
   # Executed after deployment artifact is created.
@@ -828,7 +828,7 @@ $ `cd C:\path\to\project && vagrant up && vagrant ssh`
 
 From within a VM SSH session:
 
-$ `cd /var/www/bolt && blt setup:git-hooks`
+$ `cd /var/www/blt && blt setup:git-hooks`
 
 **HUGE GOTCHA** - exit all admin apps (commander and virtual box) before continuing
 
@@ -900,7 +900,7 @@ Deploying to a live site.
 
 ```
 after_deploy:
-  - yes | ssh -o "StrictHostKeyChecking no" justinlevi@justinlevi.com "cd ~/webapps/bolt && git pull"
+  - yes | ssh -o "StrictHostKeyChecking no" justinlevi@justinlevi.com "cd ~/webapps/blt && git pull"
 ```
 
 UPDATE: SADLY I COULDN'T GET THIS TO WORK 😔
@@ -911,13 +911,13 @@ Keeping your BLT site up-to-date
 $ `./blt.sh blt:update`
 
 Sadly this does not work on Windows.
-- Issue posted on the Acquia Bolt github repo. Seems to be an issue with Vagrant and/or NFS
+- Issue posted on the Acquia BLT github repo. Seems to be an issue with Vagrant and/or NFS
 
 Notes/Links:
 
 - [Vagrant](https://www.vagrantup.com)
 - [Virtual Box](https://www.virtualbox.org/wiki/Downloads)
-- [Acquia Bolt](https://github.com/acquia/blt)
+- [Acquia BLT](https://github.com/acquia/blt)
 - [Drupal VM](http://www.drupalvm.com)
 - [Behat](http://docs.behat.org/en/v3.0)
 - [PHPUnit](https://phpunit.de)
