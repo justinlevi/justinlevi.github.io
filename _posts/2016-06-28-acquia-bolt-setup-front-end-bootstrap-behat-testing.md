@@ -790,10 +790,10 @@ behat:
 // This will allow us to only run our own tests in the /tests/behat folder using the ghost driver
 
 Required reading:
-https://github.com/acquia/blt/blob/8.x/template/tests/README.md
+[https://github.com/acquia/blt/blob/8.x/template/tests/README.m](https://github.com/acquia/blt/blob/8.x/template/tests/README.md)
 
 Troubleshooting
-https://github.com/acquia/blt/issues/176#issuecomment-227288500
+[https://github.com/acquia/blt/issues/176#issuecomment-227288500](https://github.com/acquia/blt/issues/176#issuecomment-227288500)
 
 ## PHPUNIT
 
@@ -809,7 +809,7 @@ Solving Windows `node_modules` nested directory issue
 
 NOTE: FIRST MAKE SURE YOU DON'T HAVE YOUR VM RUNNING (As your regular user and admin)
 
-Create/Edit `Vagrantfile.local` (same directory as the Vagrantfile - make sure to update the path to your folder
+Create/Edit `Vagrantfile.local` (same directory as the Vagrantfile - make sure to update the path to your folder)
 
 ```BASH
 config.vm.provider "virtualbox" do |vb|
