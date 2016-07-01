@@ -805,7 +805,8 @@ Windows Gotcha: My first run I got an error on the testGitConfig saying that my 
 On windows, creating a symbolic link on the VM is kind of a process.
 
 Solving Windows `node_modules` nested directory issue
---------------
+---
+
 NOTE: FIRST MAKE SURE YOU DON'T HAVE YOUR VM RUNNING (As your regular user and admin)
 
 Create/Edit `Vagrantfile.local` (same directory as the Vagrantfile - make sure to update the path to your folder
@@ -835,9 +836,9 @@ $ `logout`
 $ `vagrant halt`
 
 EXIT Cmder!!!
------
+
  Note: If you don't exit out of your admin terminal you will get a UID error when trying to vagrant up again as your normal user.
------
+---
 
 
 ## BUILDING/DEPLOYING
