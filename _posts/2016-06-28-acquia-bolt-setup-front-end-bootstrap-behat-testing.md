@@ -74,7 +74,7 @@ Teams can focus on the unique business impact of their project versus spending t
 - [https://github.com/acquia/blt/blob/8.x/template/tests/README.md](https://github.com/acquia/blt/blob/8.x/template/tests/README.md)
 
 *Note, doing this on windows is possible but it is rough
-I ended up going through this process from within another linux vm and then copying the files/folders back to my windows file system. I also needed to copy and manually modify the scripts/drupal-vm/config.yml and put it into my box folder. I had to copy the scripts/drupal-vm/Vagrantfile into the project root folder as well.  Trying to do this any other way caused lots of issues I couldn't figure out.*
+I ended up going through this process from within another linux vm and then copying the files/folders back to my windows file system. I also needed to copy and manually modify the `scripts/drupal-vm/config.yml` and put it into my box folder. I had to copy the `scripts/drupal-vm/Vagrantfile` into the project root folder as well.  Trying to do this any other way caused lots of issues I couldn't figure out.*
 
 From the onboarding readme:
 
@@ -85,15 +85,18 @@ We highly recommend that you do not use Windows directly for development. Many d
 **If you're on windows, don't let this scare you though. There are ton of things you can learn here and you can get the project working.**
 
 **Requirements**
+
 - Vagrant
 - VirtualBox
 
 ### Initial Setup
 
 Clone the github.com/acquia/blt repository locally
+
 $ `git clone github.com/acquia/blt`
 
 From your terminal, cd into the cloned repository folder and run:
+
 $ `./blt.sh clean && ./blt.sh configure`
 
 This creates two files in the same folder,  `local.settings.php` and `project.yml`
@@ -106,6 +109,7 @@ Optional `project.yml` updates:
 - Note: you may want to leave the lightning profile and thunder theme, otherwise the default behat tests won't run.
 
 Create your project
+
 $ `./blt.sh create`
 
 This will create a new folder next to the repository directory that contains the entire project scaffolding
@@ -123,9 +127,10 @@ Drupal-VM is a LAMP stack tuned for drupal development running on a Virtual Mach
 
 First, you need to have Vagrant and Virtual Machine downloaded and installed. Most of the time, the stock settings should work for you but if not, there are a ton of configuration options that you can checkout at the drupal-vm github repo. You can pretty easily turn on/off things like nodjs and ruby among many other useful libraries and packages. The documenation is great, so check it out.
 
-http://docs.drupalvm.com/en/latest/
+[http://docs.drupalvm.com/en/latest/](http://docs.drupalvm.com/en/latest/)
 
 Initialize the Drupal-vm box folder and default config.yml
+
 $ `./blt.sh vm:init`
 
 **Installing extras**
@@ -138,6 +143,7 @@ https://github.com/geerlingguy/drupal-vm/blob/master/default.config.yml
 The config.yml file that comes with Bolt will install some logical defaults for the project but in our case, we will want to add a few other things. You do that by copy/pasting the entire installed_extras yml array into the bolt `box/config.yml` file.
 
 `box/config.yml`
+
 ```YAML
 # Comment out any extra utilities you don't want to install. If you don't want
 # to install *any* extras, make set this value to an empty set, e.g. `[]`.
@@ -158,6 +164,7 @@ installed_extras:
   # - xdebug
   # - xhprof
 ```
+
 - Enable adminer, drupalconsole, nodejs, and ruby by un-commenting those lines.
 - Note: if you forget to do this before you do the initial $ `vagrant up` you can always run $ `vagrant reload --provision`  this will download and rebuild everything. If that fails, you can try $ `vagrant halt && vagrant destroy && vagrant up`
 - Every now and then there will be a new release of the box. You will want to update using $ `vagrant box update`
@@ -165,6 +172,7 @@ installed_extras:
 Note: Drupal-VM ships with php7 which is great and you should switch if you can. However, Acquia cloud does not support php7 yet so if you need to work with php5.6, you need to change the following in your box/config.yml
 
 `box/config.yml`
+
 ```YAML
 # PHP Configuration. Currently-supported versions: 5.6, 7.0.
 # To use 5.6, see: http://docs.drupalvm.com/en/latest/other/php-56/
@@ -201,20 +209,25 @@ php_memcached_package: php5-memcached
 xhprof_download_url: https://github.com/phacility/xhprof/archive/master.tar.gz
 xhprof_download_folder_name: xhprof-master
 ```
-source: http://docs.drupalvm.com/en/latest/other/php-56/
+
+source: [http://docs.drupalvm.com/en/latest/other/php-56/](http://docs.drupalvm.com/en/latest/other/php-56/)
 
 Create your virtual machine
+
 $ `vagrant up`
 
 Connect to the VM via terminal
+
 $ `vagrant ssh`
 // This will create an ssh session to the virtual machine just like any hosting server
 
 Change the working directory and run the setup task
+
 $ `cd /var/www/bolt && ls -ahl`
 // This will just verify that the folder syncing is setup and working
 
 Logout of the ssh session
+
 $ `logout`
 
 ## GOTCHAS
@@ -222,22 +235,27 @@ Make sure to update: drush/site-aliases/drupal-vm.aliases.drushrc.php to the dom
 
 To **NOT** install lightning profile by default:
 set contrib: false under the profile in use in project.yml.
-https://github.com/acquia/blt/issues/20#issuecomment-216983267
+
+[https://github.com/acquia/blt/issues/20#issuecomment-216983267](https://github.com/acquia/blt/issues/20#issuecomment-216983267)
 
 Update your hosts file
-// Windows: `C:\Windows\System32\drivers\etc\hosts`
-// Mac: `/private/etc/hosts`
+
+- // Windows: `C:\Windows\System32\drivers\etc\hosts`
+- // Mac: `/private/etc/hosts`
 
 `192.168.88.88 bolt.vm adminer.bolt.vm`
 
 Install drupal, create local settings and local behat
+
 $ `./blt.sh setup`
 
 OPTIONAL
+
 $ `./blt.sh blt:alias`
 // After the rest of this script executes, you need to run $ source ~/.bashrc
 
 You should now be able to run
+
 $ `blt -l`
 
 ### SUCCESS!
@@ -246,15 +264,19 @@ At this point you should be able to open your browser and load up http://bolt.vm
 ## Some cleanup.
 
 commit all of your changes to your github repository
+
 $ `git branch develop && git add -A && git commit -m "First bolt commit."`
+
 $ `git config --global --edit`
 // set your name and email. This info will display on github to identify who submitted each commit
 
 Add your remote github url
+
 $ `git remote add origin git@github.com:justinlevi/bolt.git`
 // swap out with your repo address
 
 Push to master (we should probably push to develop and use git-flow feature branches)
+
 $ `git push -u origin master`
 
 Notes:
@@ -268,6 +290,7 @@ Phing is just a task runner, similar to grunt, or gulp but built on php instead 
 So, we've already used a few phing tasks this far (./blt.sh clean, configure, setup).
 
 Use the following command to get an overview of all of the available tasks.
+
 $ `./blt.sh -l` or `blt -l` , configure, create, local:setup
 
 There are a ton of commands here and not all of them will be applicable. The important thing to know is that many of the commands are built as building blocks and you can run them individually or as a complete block.
@@ -318,9 +341,11 @@ Note: The `composer.json` repositories array defines the source for the modules 
 I'm a fan of bootstrap, mainly because it's what I know and I find it pretty easy to work with.
 
 Install the bootstrap theme by adding the following to your composer.json
+
 $ `"drupal/bootstrap":"8.3.0-beta3"`
 
 Create a subtheme from one of the starter kits. Use the less version even though we'll be using the sass.
+
 $ `cp -r docroot/themes/contrib/bootstrap/starterkits/less docroot/themes/custom/boltstrap`
 
 Rename all of the THEMENAME.* files in your new custom subtheme
@@ -332,12 +357,15 @@ Rename all of the THEMENAME.* files in your new custom subtheme
 Edit your THEME.yml file and change the name and anything else you want.
 
 Create a `js/script.js` file
+
 $ mkdir js && touch js/script.js
 
 Install bower
+
 $ `npm i -g bower`
 
 Create a bower.json for the bootstrap sass project in the new custom theme
+
 ```JSON
 {
   "name": "boltstrap",
@@ -362,9 +390,11 @@ Create a bower.json for the bootstrap sass project in the new custom theme
 ```
 
 Install your bower dependencies
+
 $ `bower install`
 
 Create a package.json file with the following contents:
+
 ```JSON
 {
   "name": "custom_theme",
@@ -414,16 +444,19 @@ Create a package.json file with the following contents:
 ```
 
 Install npm dependencies
+
 $ `npm install`
 
 Windows Gotcha: Scroll down below to read about "Creating a symbolic link on the VM". You will need to create a symlink to a node_modules folder outside of your shared NFS folder structure. You can create the node_modules folder in your vagrant home directory and the symlink can reside in your theme folder. This should allow you to install your npm dependencies.
 
 Create a sass folder and add a styles.scss file
+
 $ `mkdir sass && touch sass/styles.scss`
 
 The following is a slightly modified version of the styles.scss that comes with bootstrap
 
 /docroot/themes/custom/boltstrap/sass/styles.scss
+
 ```SASS
 /*!
  * Bootstrap v4.0.0-alpha.2 (http://getbootstrap.com)
@@ -484,12 +517,15 @@ The following is a slightly modified version of the styles.scss that comes with 
 ```
 
 Copy in the bootstrap provided default variables.scss
+
 $ `cp ../bower_components/bootstrap/ scss/_variables.scss ./_variables.scss`
 
 Delete the less folder so we're not confused later
+
 $ `cd ../ && rm -rf less`
 
 Create a gulpfile.js in your theme folder with the following contents:
+
 ```JS
 /**
  * @file
@@ -694,6 +730,7 @@ gulp.task('clean:css', function (cb) {
 ```
 
 Update your project.yml target-hooks > frontend-build
+
 ```YAML
 target-hooks:
   # Executed when front end assets should be generated.
@@ -706,6 +743,7 @@ target-hooks:
 ```
 
 This gives you the ability to now run
+
 $ `./blt.sh frontend:build`
 
 ## BEHAT & PHPUNIT TESTING
@@ -713,21 +751,25 @@ $ `./blt.sh frontend:build`
 Well... mostly behat because phpunit gets kinda nutty and I ran out of time...
 
 Connect to your VM
+
 $ `vagrant ssh`
 // We need to run our behat tests from within the VM
 
 *GOTCHA* - (this isn't documented very well...)
+
 $ `composer run-script install-phantomjs`
 
 Check to make sure you have your tests/behat/local.yml file otherwise, run $ `./blt.sh setup:behat` // This will create a local.yml file. No other changes are necessary.
 
 If your site is up and running with the steps above, you should be able to run:
+
 $ `./blt.sh tests:behat`
 // this will run 50 scenarios out of the gate. Note, on windows 10 of them failed for me.
 
 Add the following to custom build.yml file.
 
 build/custom/phing/build.yml
+
 ```YAML
 behat:
   config: ${repo.root}/tests/behat/local.yml
@@ -767,6 +809,7 @@ Solving Windows `node_modules` nested directory issue
 NOTE: FIRST MAKE SURE YOU DON'T HAVE YOUR VM RUNNING (As your regular user and admin)
 
 Create/Edit `Vagrantfile.local` (same directory as the Vagrantfile - make sure to update the path to your folder
+
 ```BASH
 config.vm.provider "virtualbox" do |vb|
   vb.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate//c/path/to/your/folder", "1"]
@@ -775,12 +818,15 @@ end
 - Restart Cmder as administrator (Right click on the alias and choose run as administrator)
 
 From a terminal on your host machine run:
+
 $ `fsutil behavior set SymlinkEvaluation L2L:1 R2R:1 L2R:1 R2L:1`
 
 Start up the VM and ssh back in
+
 $ `cd C:\path\to\project && vagrant up && vagrant ssh`
 
 From within a VM SSH session:
+
 $ `cd /var/www/bolt && blt setup:git-hooks`
 
 **HUGE GOTCHA** - exit all admin apps (commander and virtual box) before continuing
@@ -838,13 +884,13 @@ if [[ "$TRAVIS_PULL_REQUEST" == "false" ]]; <<<TRAVIS CLI COMMAND HERE>>> -out ~
 Resources:
 
 Generating the keys
-https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/
+[https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/)
 
 Instructions for encrypting a file with the travis cli
-https://docs.travis-ci.com/user/encrypting-files/
+[https://docs.travis-ci.com/user/encrypting-files/](https://docs.travis-ci.com/user/encrypting-files/)
 
 Example of how this works in your travis file
-https://github.com/acquia/blt/blob/8.x/.travis.yml#L27
+[https://github.com/acquia/blt/blob/8.x/.travis.yml#L27](https://github.com/acquia/blt/blob/8.x/.travis.yml#L27)
 
 Deploying to a live site.
 
@@ -879,6 +925,8 @@ Notes/Links:
 **Pro Tip**
 
 Install this plugin to speed up composer based installs on drupal-vm vagrant
+
 -  `vagrant plugin install vagrant-cachier`
-source: http://docs.drupalvm.com/en/latest/deployment/composer/#improving-composer-build-performance
+
+source: [http://docs.drupalvm.com/en/latest/deployment/composer/#improving-composer-build-performance](http://docs.drupalvm.com/en/latest/deployment/composer/#improving-composer-build-performance)
 
