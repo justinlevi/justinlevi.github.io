@@ -876,3 +876,4 @@ Notes/Links:
 Install this plugin to speed up composer based installs on drupal-vm vagrant
 -  `vagrant plugin install vagrant-cachier`
 source: http://docs.drupalvm.com/en/latest/deployment/composer/#improving-composer-build-performance
+
