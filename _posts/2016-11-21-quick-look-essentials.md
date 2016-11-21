@@ -46,3 +46,13 @@ defaults write org.n8gray.QLColorCode hlTheme acid
 The above config looks like this: 
 
 ![QLColorCode](/images/posts/112116/qlcolorcode.jpg){: .img-responsive}
+
+![QLImageSize](/images/posts/112116/qlimagesize.jpg){: .img-responsive}
+
+![qlzip](/images/posts/112116/qlzip.jpg){: .img-responsive}
+
+
+
+
+
+
