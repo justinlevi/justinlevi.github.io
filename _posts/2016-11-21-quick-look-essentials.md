@@ -9,7 +9,9 @@ date: 2016-11-21
 
 One of those things I missed the most when I had to switch back to a Windows machine at work was access to anything similar to Quick Look on OS X.
 
-Recently I upgraded to OS X Sierra and all of my Quick Look plugins disappeared. Here's the list of plugins I've got running: 
+Hard to overstate how incredibly useful it is to be able to use quick look source code files, including drupal extensions like .module and .inc. Seeing markdown and the contents of a zip file before unzipping is really nice. 
+
+Recently I upgraded to OS X Sierra and all of my Quick Look plugins disappeared. There are about a million different quick look plugins available out there but here's the list of plugins I've got running: 
 
 - betterzipql (https://macitbetter.com/BetterZip-Quick-Look-Generator/)
 - qlImageSize (https://github.com/Nyx0uf/qlImageSize)
