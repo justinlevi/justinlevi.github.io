@@ -30,7 +30,7 @@ A couple of things that tripped me up.
 
 $ `defaults write org.n8gray.QLColorCode hlTheme acid`
 
-You can see some of the other themes availabe on by looking at the highlight documentation: 
+You can see some of the other themes available here (note - not all of them work): 
 http://www.andre-simon.de/doku/highlight/en/highlight.php
 
 I also wanted to see the line numbers and set the base font to `Monaco`. Here is the list of settings I'm using: 
