@@ -7,7 +7,7 @@ bg-image: "post-bg.jpg"
 date: 2016-11-26
 ---
 
-#New PHPStorm Version released today.#
+##New PHPStorm Version released today.##
 
 Jetbrains provides a checksum, and it's really a good idea to use it to verify that the file hasn't been corrupted during transmission.
 
