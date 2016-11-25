@@ -26,12 +26,13 @@ After you save, make sure to run $`source ~/.bash_profile` on your terminal, oth
 After downloading the upgrade (dmg),
 
 1. Open your terminal and type `sha256check `
-2. copy the hash portion of the checksum that JetBrains provides and then on your terminal you can type
-3. Find the download and drag the file onto the terminal window. This essentially just adds the path to the file instead of you having to type it. 
+2. Copy the hash portion of the checksum that JetBrains provides and then head back to your terminal
+3. Find the download and drag the file onto the terminal window. This essentially just adds the path to the terminal instead of you having to type it. 
 
 So in my case, the command looks like this:
 
 $ `sha256check /Users/justinwinter/Downloads/PhpStorm-2016.3.dmg`
+(Note: at this point I have already copied the hash from the JetBrains website)
 
 
 And the response  is:
