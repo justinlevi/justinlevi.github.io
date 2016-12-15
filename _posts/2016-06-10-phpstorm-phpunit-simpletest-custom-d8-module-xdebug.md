@@ -22,13 +22,13 @@ $ `php core/scripts/run-tests.sh --url http://data.vm --color --verbose --module
 
 I have tried to initiate the debug session from the command line with the following:
 
-$ `export XDEBUG_CONFIG="idekey=PHPSTORM remote_enable=1 remote_connect_back=0 remote_mode=req remote_port=9000"; 
+$ `export XDEBUG_CONFIG="idekey=PHPSTORM remote_enable=1 remote_connect_back=0 remote_mode=req remote_port=9000";
 sudo php core/scripts/run-tests.sh --url http://data.vm --color --verbose --module data_logger`
 
 $ `sudo php -dxdebug.remote_enable=1 -dxdebug.remote_mode=req -dxdebug.remote_port=9000 -dxdebug.remote_host=192.168.88.1
 -dxdebug.remote_connect_back=0 core/scripts/run-tests.sh --url http://data.vm --color --verbose --module data_logger`
 
-Note, I don't think I shouldn't have to specify any of the xdebug variables on the command line because they are already set but I as grasping at straws...
+Note, I don't think I should have to specify any of the xdebug variables on the command line because they are already set, but I was grasping at straws...
 
 The tests execute, but the debugger session never seems to start within PHPStorm.
 
@@ -36,22 +36,22 @@ The tests execute, but the debugger session never seems to start within PHPStorm
 *PHP Storm*
 ---
 
-PHPStorm **Miserably Fails** running my custom module PHPUnit Test. 
+PHPStorm **Miserably Fails** running my custom module PHPUnit Test.
 
-PHPStorm **SUCCEEDS** running and debugging the Bolt included PHPUnit tests in the `tests/phpunit` folder. 
+PHPStorm **SUCCEEDS** running and debugging the Bolt included PHPUnit tests in the `tests/phpunit` folder.
 
-After setting the PHPUnit settings screen to use a remote interpreter and specifying a custom autoloader to the root vendor folder `/var/www/data/vendor/autoload.php` 
+After setting the PHPUnit settings screen to use a remote interpreter and specifying a custom autoloader to the root vendor folder `/var/www/data/vendor/autoload.php`
 
 
 [![PHPStorm PHPUnit Remote Interpreter Settings][1]][1]
 
-I right click and choose run/debug on one of the files, and everything works as expected. The debugger starts and we're good to go. 
+I right click and choose run/debug on one of the files, and everything works as expected. The debugger starts and we're good to go.
 
-The command that is displayed in the console is: 
+The command that is displayed in the console is:
 
 `sftp://vagrant@192.168.88.88:22/usr/bin/php -dxdebug.remote_enable=1 -dxdebug.remote_mode=req -dxdebug.remote_port=9000 -dxdebug.remote_host=192.168.88.1 /home/vagrant/.phpstorm_helpers/phpunit.php --no-configuration Drupal\\Tests\\PHPUnit\\BuildTest /var/www/data/tests/phpunit/BuildTest.php`
 
-The main difference that I see is that these tests extent `TestBase` where as my Test extends `WebTestBase` and the PHPUnit tests at the root level include a phpunit.xml file which I have tried to copy and update to point to the vendor/autoload.php as well but this didn't have any effect. 
+The main difference that I see is that these tests extent `TestBase` where as my Test extends `WebTestBase` and the PHPUnit tests at the root level include a phpunit.xml file which I have tried to copy and update to point to the vendor/autoload.php as well but this didn't have any effect.
 
 What I'm confused about is why PHPStorm seems to inherently understand that the `tests/phpunit/*` are PHPUnit tests when I right click on those files but when I right click on my Test class file, I get the option to debug with Javascript or as a PHP Script. Why does PHPStorm not recognize my test class as a PHPUnit test?
 
@@ -60,7 +60,7 @@ Bottom line, how can I debug a custom module test in PHPStorm?
 
 
 Additional Context:
---- 
+---
 
 I'm running an [Acquia Bolt generated site][2] on a [Drupal-VM][3] Virtual Machine running PHP7 w/ XDebug Enabled. The site is using composer.json as the dependency manager for drupal core as well as all contrib modules. This is just a project for me to test some things, so here's the [github repo][4].
 
@@ -132,7 +132,7 @@ I can verify that xdebug is running on the VM as expected:
     xdebug.var_display_max_depth => 3 => 3
 
 
-I can verify that my test displays and runs as expected at `admin/config/development/testing`. 
+I can verify that my test displays and runs as expected at `admin/config/development/testing`.
 
 [![Data Logger PHPUnit SimpleTest][5]][5]
 
@@ -140,7 +140,7 @@ I can verify that my test displays and runs as expected at `admin/config/develop
 
 Note: I can pause the test if I initiate the test through Drupal at `/admin/config/development/testing`. This is not an ideal workflow as it's slow and I'd rather not switch out of the IDE. I would rather initiate the test from within PHPStorm or from the command line.
 
-Here are my PHP, Debug, and PBGp Proxy Settings as well: 
+Here are my PHP, Debug, and PBGp Proxy Settings as well:
 [![PHP Storm - PHP Settings][7]][7]
 [![PHP Storm - Debug Settings][8]][8]
 [![PHP Storm - dbgp-proxy settings][9]][9]
