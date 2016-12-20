@@ -19,11 +19,14 @@ Recently I upgraded to OS X Sierra and all of my Quick Look plugins disappeared.
 - qlcolorcode-extra (https://github.com/BrianGilbert/QLColorCode-extra)
 
 
-You can install these with the following snippets if you have brew installed.
+You can install these with the following snippets if you have brew installed. Note that you might need to install the cask version of a few of these if you get a warning that one of them doesn't exist.
 
-```
-brew install Caskroom/cask/betterzipql qlImageSize Caskroom/cask/qlmarkdown && brew install wget && wget https://github.com/BrianGilbert/QLColorCode-extra/archive/master.zip && unzip master.zip && mv QLColorCode-extra-master/QLColorCode.qlgenerator ~/Library/QuickLook/ && qlmanage -r
-```
+$ `brew install Caskroom/cask/betterzipql`
+$ `brew install qlImageSize`
+$ `brew install Caskroom/cask/qlmarkdown`
+$ `brew install wget && wget https://github.com/BrianGilbert/QLColorCode-extra/archive/master.zip`
+$ `unzip master.zip && mv QLColorCode-extra-master/QLColorCode.qlgenerator ~/Library/QuickLook/`
+$ `qlmanage -r`
 
 A couple of things that tripped me up.
 
