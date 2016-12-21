@@ -9,7 +9,7 @@ date: 2016-12-21
 
 I recently started digging into some TWIG Drupal 8 development and needed to see what variables were available to me from within the twig template. You can sometimes use KINT or print the variables to the screen but this can be really slow and doesn't really give you the full picture. The twig_xdebug module lets you use your php debugger to inspect the variables you have access to, which can be really helpful.
 
-###Get XDEBUG working
+### Get XDEBUG working ###
 
 In your Drupal-VM folder, open the `config.yml` file and find the `installed_extras:` section.
 Uncomment the `- xdebug` line.
@@ -41,7 +41,7 @@ Screengrab Video
 The next step is to get PHPStorm setup to listen to xdebug breakpoints.
 
 ---
-###Setup PHPStorm to listen for XDebug
+### Setup PHPStorm to listen for XDebug ###
 
 First, make sure your VM is running - $ `vagrant up`.
 
@@ -73,7 +73,7 @@ Screengrab Video
 <iframe width="750" height="422" src="https://www.youtube.com/embed/jHxIlD-Slwk" frameborder="0" allowfullscreen> </iframe>
 
 ---
-###Install twig_xdebug
+### Install twig_xdebug ###
 
 Back on your host machine, open a terminal window and navigate to your project root, where your composer.json file exists. In theory, you should just be able to run:
 
@@ -93,7 +93,7 @@ Screengrab Video
 <iframe width="750" height="422" src="https://www.youtube.com/embed/Y7FE7SbCYnQ" frameborder="0" allowfullscreen> </iframe>
 
 ---
-###Debug with twig_xdebug
+### Debug with twig_xdebug ###
 
 Now that we have xdebug installed, we've verified it's working, and we have the twig_xdebug module installed, we next need to enable the module.
 
