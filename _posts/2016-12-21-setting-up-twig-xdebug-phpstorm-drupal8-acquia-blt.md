@@ -123,3 +123,5 @@ $environment: This is information about the Twig environment, including availabl
 
 $arguments: If you supply an argument to breakpoint (e.g. {{ breakpoint(fields) }}), it'll be viewable here.
 ```
+
+Important Gotcha: You mostly likely don't want to keep xdebug up and running. Once you're done debugging, you'll want to disable the xdebug installed extra and run $ `vagrant reload --provision` again.
