@@ -33,12 +33,12 @@ $ vagrant reload --provision
 
 Verify that xdebug is up and running
 
+Screengrab Video
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Nj6wmHUpJ9c" frameborder="0" allowfullscreen> </iframe>
+
 In your terminal window, ssh into the Virtual Machine (VM)  with: $ `vagrant ssh` and run $ `php -i | grep xdebug`. If xdebug is running, you should see a bunch of lines related to xdebug on the screen.
 
 The next step is to get PHPStorm setup to listen to xdebug breakpoints.
-
-Screengrab Video
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Nj6wmHUpJ9c" frameborder="0" allowfullscreen> </iframe>
 
 ---
 ### Setup PHPStorm to listen for XDebug
