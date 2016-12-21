@@ -58,8 +58,7 @@ You may get an RSA warning that you can ignore and click yes. On the following s
 
 Let's test to see that xdebug is running.
 
-Install the chrome xdebug helper extension:
-https://chrome.google.com/webstore/detail/xdebug-helper/eadndfjplgieldjbigjakmdgkmoaaaoc?hl=en
+[Install the chrome xdebug helper extension](https://chrome.google.com/webstore/detail/xdebug-helper/eadndfjplgieldjbigjakmdgkmoaaaoc?hl=en)
 
 Back in PHPStorm, navigate to your Drupal project `index.php` file. Add a breakpoint somewhere by clicking in the gutter, to the left of the code, and to the right of the line numbers.
 
