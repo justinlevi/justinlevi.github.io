@@ -52,16 +52,16 @@ Next, we will need to setup PHP to use the remote interpreter on your VM.  Open 
 Screengrab Video
 <iframe width="750" height="422" src="https://www.youtube.com/embed/UobdcPiN_Us" frameborder="0" allowfullscreen> </iframe>
 
-This will open up another modal window. Click on the plus icon, choose "Remote" and then select the "Vagrant" radio button and navigate to Vagrant Instance Folder. In my case it's the box folder for my project. PHPStorm will automatically fill in the remaining settings after which you can just click ok.
+This will open up another modal window. Click on the plus icon, choose "Remote" and then select the "Vagrant" radio button and navigate to the "Vagrant Instance Folder". In my case it's the box folder for my project. PHPStorm will automatically fill in the remaining settings after which you can just click ok.
 
 You may get an RSA warning that you can ignore and click yes. On the following screen, you can just click "ok".
 
 Let's test to see that xdebug is running.
 
 Install the chrome xdebug helper extension:
-https://chrome.google.com/webstore/detail/xdebug-helper/eadndfjplgieldjbigjakmdgkmoaaaoc?hl=en
+[![Chrome Xdebug Helper Extension][1]][1]
 
-Back in PHPStorm, navigate to your index.php file and add a breakpoint somewhere by clicking in the gutter to the left of the code and to the right of the line numbers.
+Back in PHPStorm, navigate to your Drupal project `index.php` file. Add a breakpoint somewhere by clicking in the gutter, to the left of the code, and to the right of the line numbers.
 
 Start Listening for Debug Connections: Click the icon on the top that looks like a "old-timey" phone handset with a crossed out red circle at the top and little green bug at the bottom.
 
@@ -125,4 +125,4 @@ $environment: This is information about the Twig environment, including availabl
 $arguments: If you supply an argument to breakpoint (e.g. {{ breakpoint(fields) }}), it'll be viewable here.
 ```
 
-
+[1]: https://chrome.google.com/webstore/detail/xdebug-helper/eadndfjplgieldjbigjakmdgkmoaaaoc?hl=en
