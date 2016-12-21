@@ -36,7 +36,7 @@ Verify that xdebug is up and running
 In your terminal window, ssh into the Virtual Machine (VM)  with: $ `vagrant ssh` and run $ `php -i | grep xdebug`. If xdebug is running, you should see a bunch of lines related to xdebug on the screen.
 
 Screengrab Video
-<iframe width="750" height="422" src="https://www.youtube.com/embed/Nj6wmHUpJ9c" frameborder="0" allowfullscreen> </iframe>
+<iframe width="100%" height="422" src="https://www.youtube.com/embed/Nj6wmHUpJ9c" frameborder="0" allowfullscreen> </iframe>
 
 The next step is to get PHPStorm setup to listen to xdebug breakpoints.
 
@@ -51,7 +51,7 @@ Next, we will need to setup PHP to use the remote interpreter on your VM.  Open 
 ![PHP Remote Interpreter](/images/posts/122116/php-remote-interpreter.jpg){: .img-responsive}
 
 Screengrab Video
-<iframe width="750" height="422" src="https://www.youtube.com/embed/UobdcPiN_Us" frameborder="0" allowfullscreen> </iframe>
+<iframe width="100%" height="422" src="https://www.youtube.com/embed/UobdcPiN_Us" frameborder="0" allowfullscreen> </iframe>
 
 This will open up another modal window. Click on the plus icon, choose "Remote" and then select the "Vagrant" radio button and navigate to the "Vagrant Instance Folder". In my case it's the box folder for my project. PHPStorm will automatically fill in the remaining settings after which you can just click ok.
 
@@ -70,7 +70,7 @@ Start Listening for Debug Connections: Click the icon on the top that looks like
 Jump back to chrome and navigate to your site's homepage. If all goes well, PHPStorm will listen for the xdebug connection and "catch" the request on the line you added the breakpoint to. You can then use your debugger to inspect the available php variables. To continue execution, you would press the green play button or to stop execution you would click the stop icon in the debugger panel.
 
 Screengrab Video
-<iframe width="750" height="422" src="https://www.youtube.com/embed/jHxIlD-Slwk" frameborder="0" allowfullscreen> </iframe>
+<iframe width="100%" height="422" src="https://www.youtube.com/embed/jHxIlD-Slwk" frameborder="0" allowfullscreen> </iframe>
 
 ---
 
@@ -91,7 +91,7 @@ $ `php -i | grep memory_limit`
 You should see the value you entered. You should now be able to run the composer require command above to install the module.
 
 Screengrab Video
-<iframe width="750" height="422" src="https://www.youtube.com/embed/Y7FE7SbCYnQ" frameborder="0" allowfullscreen> </iframe>
+<iframe width="100%" height="422" src="https://www.youtube.com/embed/Y7FE7SbCYnQ" frameborder="0" allowfullscreen> </iframe>
 
 ---
 
@@ -113,7 +113,7 @@ From her you can inspect all of the variables available to the template. Read th
 
 Screengrab Video
 
-<iframe width="750" height="422" src="https://www.youtube.com/embed/-108L9nHaw4" frameborder="0" allowfullscreen> </iframe>
+<iframe width="100%" height="422" src="https://www.youtube.com/embed/-108L9nHaw4" frameborder="0" allowfullscreen> </iframe>
 
 From the drupal.org/project/twig_xdebug page:
 
