@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Drupal 8 : twig_xdebug module tutorial"
-subtitle: "Walkthrough for getting PHPStorm setup and working with an Acquia BLT Drupal 8 project"
+subtitle: "Walkthrough for getting twig_xdebug setup and working in PHPStorm with an Acquia BLT Drupal 8 project"
 bg-image: "monster-bg.jpg"
 
 date: 2016-12-21
