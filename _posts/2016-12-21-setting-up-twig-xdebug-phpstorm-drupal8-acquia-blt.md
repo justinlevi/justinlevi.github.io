@@ -9,11 +9,6 @@ date: 2016-12-21
 
 I recently started digging into some TWIG Drupal 8 development and needed to see what variables were available to me from within the twig template. You can sometimes use KINT or print the variables to the screen but this can be really slow and doesn't really give you the full picture. The twig_xdebug module lets you use your php debugger to inspect the variables you have access to, which can be really helpful.
 
-![PHP Remote Interpreter](/images/posts/122116/php-remote-interpreter.jpg){: .img-responsive}
-
-Screengrab Video
-<iframe width="560" height="315" src="https://www.youtube.com/embed/UobdcPiN_Us" frameborder="0" allowfullscreen> </iframe>
-
 ### Get XDEBUG working
 
 In your Drupal-VM folder, open the `config.yml` file and find the `installed_extras:` section.
@@ -51,6 +46,11 @@ Screengrab Video
 First, make sure your VM is running - $ `vagrant up`.
 
 Next, we will need to setup PHP to use the remote interpreter on your VM.  Open up the PHPStorm Preferences (⌘ + ,) and go to Languages & Frameworks > PHP. Click the "..." to the right of the CLI Interpreter field. Hint: type "CLI Interpreter" in the search field to find this quicker.
+
+![PHP Remote Interpreter](/images/posts/122116/php-remote-interpreter.jpg){: .img-responsive}
+
+Screengrab Video
+<iframe width="560" height="315" src="https://www.youtube.com/embed/UobdcPiN_Us" frameborder="0" allowfullscreen> </iframe>
 
 This will open up another modal window. Click on the plus icon, choose "Remote" and then select the "Vagrant" radio button and navigate to Vagrant Instance Folder. In my case it's the box folder for my project. PHPStorm will automatically fill in the remaining settings after which you can just click ok.
 
