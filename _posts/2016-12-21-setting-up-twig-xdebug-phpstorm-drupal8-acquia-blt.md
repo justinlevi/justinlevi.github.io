@@ -94,6 +94,7 @@ Screengrab Video
 <iframe width="750" height="422" src="https://www.youtube.com/embed/Y7FE7SbCYnQ" frameborder="0" allowfullscreen> </iframe>
 
 ---
+
 ### Debug with twig_xdebug
 
 Now that we have xdebug installed, we've verified it's working, and we have the twig_xdebug module installed, we next need to enable the module.
