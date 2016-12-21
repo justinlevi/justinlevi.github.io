@@ -103,7 +103,7 @@ From within the VM, navigate to the docroot folder and run:
 
 $ `drush en -y twig_xdebug` or you can enable it at `/admin/modules`
 
-After that, we can add a "breakpoint" in the twig template. You do that by adding `{{ breakpoint() }}` to a twig file you know is loading.
+After that, we can add a "breakpoint" in the twig template. You do that by adding `{% raw %} {{ breakpoint() }} {% endraw %}` to a twig file you know is loading.
 
 Then, clear the registry via $ `drush cr`, switch back to chrome, make sure you have "Debug" selected in the chrome extension, and you are listening for xdebug connections from within PHPStorm and refresh the page.
 
