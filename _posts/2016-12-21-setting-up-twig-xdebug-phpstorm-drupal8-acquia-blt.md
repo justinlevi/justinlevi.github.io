@@ -78,7 +78,7 @@ Screengrab Video
 
 Back on your host machine, open a terminal window and navigate to your project root, where your composer.json file exists. In theory, you should just be able to run:
 
-$ `composer require --dev drupal/twig_xdebug"
+$ `composer require --dev drupal/twig_xdebug`
 
 If you run into a php memory error like I did, you will need to increase the `memory_limit` in your php.ini file. The easiest way to do this is to first find which ini file is being loaded by running:
 
